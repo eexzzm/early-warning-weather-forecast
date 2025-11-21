@@ -1,4 +1,4 @@
-An anomaly-detection system. Treat it as an industrial early-warning pipeline, not a toy ML model. The goal is a system that ingests recent weather observations and emits anomaly alerts per capital. Here is the full arc from raw CSV to a deployable artifact.
+An anomaly-detection system. Treat it as an industrial early-warning pipeline, not a toy ML model. The goal is a system that ingests recent weather observations and emits anomaly alerts per capital. 
 
 Detecting 'anomaly' for example an extreme weather event or condition
 Detect atmospheric outliers per region:
