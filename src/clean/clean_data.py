@@ -22,6 +22,26 @@ PHYSICAL_BOUNDS = {
     "air_quality_Ozone": (0, 600)
 }
 
+drop_col = ['temperature_fahrenheit',
+            'feels_like_fahrenheit',
+            'wind_mph',
+            'precip_in',
+            'pressure_in',
+            'visibility_miles',
+            'uv_index',
+            'gust_mph',
+            'wind_direction',
+            'condition_text',
+            'sunrise',
+            'sunset',
+            'moonrise',
+            'moonset',
+            'moon_phase',
+            'moon_illumination',
+            'air_quality_us-epa-index',
+            'air_quality_gb-defra-index']
+
+
 def clean_sentinels(df):
     for col, sentinels in SENTINELS.items():
         if col in df.columns:
@@ -35,9 +55,9 @@ def clean_physical_bounds(df):
     return df
             
 
-
 def clean(df):
     df['last_updated'] = pd.to_datetime(df["last_updated"], errors="coerce")
+    df = df.drop(columns=drop_col, errors='ignore')
     df = clean_sentinels(df)
     df = clean_physical_bounds(df)
     
