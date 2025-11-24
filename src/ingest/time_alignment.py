@@ -5,14 +5,13 @@ import pandas as pd
 def convert_to_utc(df):
     df = df.copy()
     
-    df['last_updated'] = (
-        df.apply(lambda row: row['last_updated']
+    df['utc_time'] = (df.apply(
+        lambda row: row['last_updated']
                  .tz_localize(row['timezone'], ambiguous='NaT', nonexistent='NaT')
-                 .tz_lozalize('UTC'), axis=1
+                 .tz_convert('UTC'), axis=1
                  )
     )
     
-    df.rename(columns={'last_updated': 'UTC'})
     return df
 
 # compute global 6 hour grid
@@ -20,10 +19,10 @@ def global_grid(df):
     t_min = df['utc_time'].min()
     t_max = df['utc_time'].max()
     
-    grid = pd.data_range(
+    grid = pd.date_range(
         start = t_min,
         end = t_max,
-        freq = '6H',
+        freq = '6h',
         tz = 'UTC'
     )
     

@@ -56,7 +56,7 @@ def clean_physical_bounds(df):
             
 
 def clean(df):
-    df['last_updated'] = pd.to_datetime(df["last_updated"], errors="coerce")
+    df['last_updated'] = pd.to_datetime(df['last_updated'], errors="coerce")
     df = df.drop(columns=drop_col, errors='ignore')
     df = clean_sentinels(df)
     df = clean_physical_bounds(df)
